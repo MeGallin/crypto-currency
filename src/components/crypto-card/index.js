@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './styles.css';
 
 class CryptoCard extends Component {
   constructor(props) {
@@ -42,11 +43,16 @@ class CryptoCard extends Component {
 
   render() {
     const { name, symbol, price, lastPrice } = this.state;
+    const gainloss = lastPrice > price ? 'gain' : 'loss';
     return (
       <div>
         <div>{name}</div>
-        <div>
-          {price} {symbol} {this.priceChange(lastPrice, price)}%
+        <div className={`card ${gainloss}`}>
+          <div>price:{price}</div>
+          <div>
+            {symbol} {this.priceChange(lastPrice, price)}%{' '}
+          </div>
+          <div>Price Change: {lastPrice - price}</div>
         </div>
       </div>
     );
